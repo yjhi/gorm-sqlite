@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/mattn/go-sqlite3"
+	sqlite3 "github.com/mutecomm/go-sqlcipher"
 	"gorm.io/gorm"
 )
 
@@ -21,14 +21,7 @@ func TestDialector(t *testing.T) {
 		&sqlite3.SQLiteDriver{
 			ConnectHook: func(conn *sqlite3.SQLiteConn) error {
 				// Define the `concat` function, since we use this elsewhere.
-				err := conn.RegisterFunc(
-					"my_custom_function",
-					func(arguments ...interface{}) (string, error) {
-						return "my-result", nil // Return a string value.
-					},
-					true,
-				)
-				return err
+				return nil
 			},
 		},
 	)
